@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Q3 2nd Graded Exercise">
+    <meta name="keywords" content="HTML Forms">
+    <meta name="author" content="AL Mendoza">
+    <title>Sample Form</title>
+    <!-- updated external css link to show how to share it between repository -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" type="image/x-icon" href="./assets/favicon2.png">
+    <script src="script.js" defer></script>
+   <style>
+    body {
+      background-color: #cfaa5a;
+      font-family: 'Times New Roman', Times, serif;
+      background-image: url('https://tr.rbxcdn.com/180DAY-1e89afe49e4e3590106c05040aedb3c6/768/432/Model/Webp/noFilter');
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+    
+    .myDiv {
+      background-color: rgba(230, 240, 255, 0.5);
+      text-align: center;
+      padding: 40px;
+      border-radius: 25px;
+      margin: 60px auto;
+      width: 80%;
+      max-width: 1000px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      animation: fadeUp 1.2s ease-in-out;
+    }
+
+    h1 {
+      color: #d1b7af;
+      font-size: 2.2em;
+    }
+
+        .title {
+            color: #d1b7af;
+        }
+
+        fieldset:nth-child(2) {
+             margin-top: 20px;
+        }
+
+        legend {
+            background: black;
+            color: rgb(189, 176, 160);
+            padding: 5px;
+        }
+        label {
+             margin: 5%;
+        }
+
+        nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0 0;
+    }
+
+    nav ul li {
+      display: inline-block; /*i will figure this out i swear*/
+      margin: 10px 15px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #ffffff;
+      background-color: rgba(180, 210, 255, 0.15);
+      padding: 12px 40px;
+      border-radius: 3px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      border: 2px solid #636363;
+      font-weight: bold;
+      backdrop-filter: blur(6px);
+    }
+
+    nav ul li a:visited {
+      color: #a8a6a6;
+      opacity: 0.9;
+    }
+
+    nav ul li a:hover {
+      background-color: rgba(191, 229, 250, 0.611);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .footer {
+      margin-top: 30px;
+      font-size: 0.9em;
+      color: #6a5c4b;
+    }
+
+    input:focus {
+    background-color: #bfe5fa9c;
+    }   
+
+    textarea:focus {
+  background-color: #bfe5fa9c;
+    }   
+
+    select:focus {
+  background-color: #bfe5fa9c;
+    }   
+ 
+    </style>
+  </head>
+  <body>
+     <header>
+        <div>
+            <h1>
+                HTML Form    
+            </h1>
+            <h3>by Sol Lalican </h3>
+        </div>
+        <nav>
+            <ul>
+            <li><a href="../../index.html"> Home </a></li>
+            <li><a href="registered.html"> Show Saved Accounts </a></li>
+        </ul>
+        </nav>
+    </header>
+    <section>
+      <h1 class="title">Sign-up Page</h1>
+      <form id="dForm" action="submit" method="post" onsubmit="return confirm('Are you sure in submitting this form?')">
+        <fieldset>
+          <legend>Your Credentials</legend><br/>
+          <label> Student ID:
+            <input type="number" name="sid" id="sid" required />
+          </label><br/><br/>
+          <label> Full Name:
+            <input type="text" name="fn" id="fn" required />
+          </label><br/><br/>
+          <label> Birthday:
+            <input type="date" name="bd" id="bd" required />
+          </label><br/><br/>
+          <label> Email Address:
+            <input type="email" name="ea" id="ea" required />
+          </label><br/><br/>
+          <label> Mobile Phone:
+            <input type="text" name="mp" id="mp" required />
+          </label><br/><br/>
+          <label> Grade Level:
+            <select name="gl" id="gl" required>
+                <option value="G7">G7</option>
+                <option value="G8">G8</option>
+                <option value="G9">G9</option>
+                <option value="G10">G10</option>
+                <option value="G11">G11</option>
+                <option value="G12">G12</option>
+              </select>
+          </label><br/><br/>
+          <label> Intern/Extern:
+            <input type="radio" name="ie" value="Intern" required/> Intern
+            <input type="radio" name="ie" value="Extern" /> Extern
+          </label><br/><br/>
+          <label> Preferred Organization/Club:
+            <select name="oc" id="oc" required>
+            <option value="RSMP">Roulette SMP</option>
+            <option value="USMP">Unstable SMP</option>
+            <option value="DDSMP">Donut SMP</option>
+            <option value="SSMP">Strength SMP</option>
+            <option value="DSMP">Doni SMP</option>
+            </select>
+          </label><br/><br/>
+          <label> Why do you want to join?
+          <textarea name="reason" id="reason" required></textarea>
+          </label><br/><br/>
+          
+          
+        </fieldset>  
+        <fieldset>
+          <legend>Action Buttons</legend>
+          <button type="submit"> Submit </button>
+          <input type="reset" value=" Reset " />
+        </fieldset> 
+      </form>
+    </section>
+    <script src="script.js"></script>
+  </body>
+</html>
