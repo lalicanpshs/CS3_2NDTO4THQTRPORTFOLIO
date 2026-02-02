@@ -1,11 +1,11 @@
 // read from the localStorage saved as a string - to see if there are anything saved on the users coomputer
 let acctString = localStorage.getItem("accounts")
-let accountList = acctString ? JSON.parse(acctString) : [];5 6i // converts string into the correct data type in this case object
+let accountList = acctString ? JSON.parse(acctString) : []; // converts string into the correct data type in this case object
 
 const form = document.getElementById("dForm"); // get the HTML form from q3ge2Mendoza.html
 
 // event handler on the submit button instead of onsubmit on the button itself
-if (form) {
+if (form)
 form.addEventListener("submit", function(e) { // assign an event handler of submit to the form
     e.preventDefault(); // prevent page reload because forms gets submitted
 
