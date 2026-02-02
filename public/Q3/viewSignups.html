@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Sign-ups</title>
+
+  <style>
+    body{
+        padding: 25px;
+        font-family: arial;
+        width: 80%;
+        margin-left: 10%;
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 15px;
+    }
+    table, th, td {
+        border: 1px solid white;
+        padding: 5px;
+        text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Club Sign-ups</h1>
+
+  <label>Filter by Club:</label>
+  <select id="clubFilter">
+    <option value="ALL">ALL</option>
+    <option value="RSMP">Roulette SMP</option>
+    <option value="USMP">Unstable SMP</option>
+    <option value="DDSMP">Donut SMP</option>
+    <option value="SSMP">Strength SMP</option>
+    <option value="DSMP">Doni SMP</option>
+  </select>
+
+  <p id="totalCount"></p>
+  <p id="message"></p>
+
+  <table id="results"></table>
+
+  <br>
+  <a href="Q3_2GBerylliumLalican.html"><— Back to Sign-up Page</a>
+
+  <script>
+    // READ localStorage
+    let acctString = localStorage.getItem("accounts");
+    let accountList = acctString ? JSON.parse(acctString) : [];
+
+    const table = document.getElementById("results");
+    const filter = document.getElementById("clubFilter");
+    const total = document.getElementById("totalCount");
+    const msg = document.getElementById("message");
+
+    function displayTable(list) {
+        table.innerHTML = "";
+        msg.innerHTML = "";
+
+        if (list.length === 0) {
+            msg.innerHTML = "No sign-ups found.";
+            total.innerHTML = "";
+            return;
+        }
+
+        let row = "<tr><th>Student ID</th><th>Name</th><th>Email</th><th>Grade</th><th>Club</th></tr>";
+
+        for (let i = 0; i < list.length; i++) {
+            row += "<tr>";
+            row += "<td>" + list[i].sid + "</td>";
+            row += "<td>" + list[i].fn + "</td>";
+            row += "<td>" + list[i].ea + "</td>";
+            row += "<td>" + list[i].gl + "</td>";
+            row += "<td>" + list[i].oc + "</td>";
+            row += "</tr>";
+        }
+
+        table.innerHTML = row;
+        total.innerHTML = "Total Sign-ups: " + list.length;
+    }
+
+    displayTable(accountList);
+
+    filter.addEventListener("change", function() {
+        let selected = filter.value;
+
+        if (selected === "ALL") {
+            displayTable(accountList);
+        } else {
+            let filtered = accountList.filter(acc => acc.oc === selected);
+            displayTable(filtered);
+        }
+    });
+  </script>
+
+</body>
+</html>
