@@ -18,17 +18,10 @@ form.addEventListener("submit", function(e) { // assign an event handler of subm
         accountList.push(obj);
         // place the object inside the accountList
         // accountList is an object containing other objects with username as the key
-        accountList[obj.uname] = {};
-        for (let key in obj) { // go through the properties of the object and create another account
-            if (key != "uname") { 
-                accountList[obj.uname][key] = obj[key];
-            }
-        }
         
         console.log(accountList) // to check all the account information if it will be saved correctly
         acctString = JSON.stringify(accountList) // convert object into string, as a requirement of localStorage
         localStorage.setItem("accounts", acctString) // save on the user's computer
-        form.submit();
         alert("Sign-up saved.");
         form.reset();
     }
