@@ -1,11 +1,11 @@
 // read from the localStorage saved as a string - to see if there are anything saved on the users coomputer
 let acctString = localStorage.getItem("accounts")
-if (!acctString) { accountList = [] } // initialize the variable to contain the list of accounts object
-else { accountList = JSON.parse(acctString) } // converts string into the correct data type in this case object
+let accountList = acctString ? JSON.parse(acctString) : [];5 6i // converts string into the correct data type in this case object
 
 const form = document.getElementById("dForm"); // get the HTML form from q3ge2Mendoza.html
 
 // event handler on the submit button instead of onsubmit on the button itself
+if (form) {
 form.addEventListener("submit", function(e) { // assign an event handler of submit to the form
     e.preventDefault(); // prevent page reload because forms gets submitted
 
@@ -18,10 +18,7 @@ form.addEventListener("submit", function(e) { // assign an event handler of subm
         accountList.push(obj);
         // place the object inside the accountList
         // accountList is an object containing other objects with username as the key
-        
-        console.log(accountList) // to check all the account information if it will be saved correctly
-        acctString = JSON.stringify(accountList) // convert object into string, as a requirement of localStorage
-        localStorage.setItem("accounts", acctString) // save on the user's computer
+        localStorage.setItem("accounts", JSON.stringify(accountList));
         alert("Sign-up saved.");
         form.reset();
     }
