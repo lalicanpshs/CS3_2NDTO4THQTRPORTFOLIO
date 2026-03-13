@@ -204,7 +204,7 @@
                 title: title,
                 year: year,
                 genre: genre,
-                rating: currentrating.toString()
+                rating: currentrating
             };
 
             savemovie(newmovie);
@@ -254,7 +254,7 @@
             movielistcontainer.innerHTML = '';
             const movies = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [];
 
-            movies.forEach(movie => {
+            movies.forEach((movie, index) => {
                 const moviediv = document.createElement('div');
                 moviediv.className = 'movieitem';
 
