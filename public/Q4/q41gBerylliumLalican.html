@@ -116,6 +116,18 @@
         .liststars .starsmall.active {
             color: #ffcc00;
         }
+
+        .btndelete {
+            background-color: #383838;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
+            width: auto;
+            font-size: 12px;
+        }
     </style>
 </head>
 <body>
@@ -213,9 +225,29 @@
         
         function savemovie(movieObj) {
             let movies = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [];
+            const existingindex = movies.findIndex(m => m.title.toLowerCase() === movieObj.title.toLowerCase());
+            if (existingindex !== -1) {
+                const oldrating = parseFloat(movies[existingindex].rating);
+                const newrating = (oldrating + movieObj.rating) / 2;
+            movies[existingindex].year = movieObj.year;
+            movies[existingindex].genre = movieObj.genre;
+            movies[existingindex].rating = newrating.toFixed(1);
+        } else {
             movies.push(movieObj);
+        }
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(movies));
+        }
+        
+        function deletemovie(index) {
+            const movies = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [];
+            const movietitle = movies[index].title;
+
+            if (confirm(`Are you sure you want to delete "${movietitle}"?`)) {
+                movies.splice(index, 1);
 
             localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(movies));
+                rendermovies();
+            }
         }
 
         function rendermovies() {
@@ -224,18 +256,24 @@
 
             movies.forEach(movie => {
                 const moviediv = document.createElement('div');
-                moviediv.className = 'movie-item';
+                moviediv.className = 'movieitem';
 
                 const infoSpan = document.createElement('span');
-                infoSpan.className = 'movie-info';
+                infoSpan.className = 'movieinfo';
                 infoSpan.textContent = `${movie.title} (${movie.year}) - ${movie.genre}, Rating: `;
 
                 const starsSpan = document.createElement('span');
                 starsSpan.className = 'liststars';
                 starsSpan.innerHTML = generateListStarsHTML(parseInt(movie.rating));
 
+                const deleteBtn = document.createElement('button');
+                deleteBtn.textContent = 'Delete';
+                deleteBtn.className = 'btndelete';
+                deleteBtn.onclick = () => deletemovie(index);
+
                 moviediv.appendChild(infoSpan);
                 moviediv.appendChild(starsSpan);
+                moviediv.appendChild(deleteBtn);
 
                 movielistcontainer.appendChild(moviediv);
             });
@@ -257,7 +295,7 @@
             document.getElementById('title').value = '';
             document.getElementById('year').value = '';
             document.getElementById('genre').selectedIndex = 0;
-            currentRating = 0;
+            currentrating = 0;
             updateInputStarsUI(0);
         }
 
